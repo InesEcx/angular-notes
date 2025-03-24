@@ -1,0 +1,26 @@
+.app-sidenav-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-sidenav-content {
+    overflow: auto;
+}
+
+.toolbar-title {
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+.toggle-button {
+    margin-right: 8px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.app-content {
+    padding: 16px;
+}
