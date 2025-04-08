@@ -1,1 +1,20 @@
-<p>notes-page works!</p>
+<div class="notes-header">
+    <button mat-fab color="primary" (click)="openAddCardDialog()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+
+<mat-card class="card">
+    <h2>Tâches à faire</h2>
+    <div class="cards-list">
+        <mat-card *ngFor="let card of cards" class="card-item">
+            <mat-card-title>{{ card.title }}</mat-card-title>
+            <mat-card-content>
+                {{ card.description }}
+            </mat-card-content>
+            <mat-card-footer>
+                Créé le : {{ card.date | date: 'short' }}
+            </mat-card-footer>
+        </mat-card>
+    </div>
+</mat-card>

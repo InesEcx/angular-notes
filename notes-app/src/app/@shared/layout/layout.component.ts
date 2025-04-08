@@ -1,29 +1,24 @@
 import {Component} from '@angular/core';
-import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
-import {MatListItem, MatNavList} from "@angular/material/list";
-import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
-import {MatToolbar} from "@angular/material/toolbar";
-import {MatIcon} from "@angular/material/icon";
-import {MatIconButton} from "@angular/material/button";
+import {MatSidenavContainer, MatSidenavContent, MatSidenav} from '@angular/material/sidenav';
+import {RouterOutlet} from '@angular/router';
+import {HeaderComponent} from "./header/header.component";
+import {FooterComponent} from "./footer/footer.component";
+import {SideNavComponent} from "./side-nav/side-nav.component";
 
 @Component({
     selector: 'app-layout',
+    standalone: true,
+    templateUrl: './layout.component.html',
+    styleUrls: ['./layout.component.scss'],
     imports: [
         MatSidenavContainer,
         MatSidenavContent,
-        MatNavList,
         MatSidenav,
-        MatIcon,
-        MatListItem,
-        RouterLink,
-        RouterLinkActive,
-        MatIconButton,
-        MatToolbar,
-        RouterOutlet
-    ],
-    templateUrl: './layout.component.html',
-    standalone: true,
-    styleUrl: './layout.component.scss'
+        RouterOutlet,
+        HeaderComponent,
+        FooterComponent,
+        SideNavComponent
+    ]
 })
 export class LayoutComponent {
 }
