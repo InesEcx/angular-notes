@@ -1,11 +1,62 @@
-.card {
+.section-card {
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     background-color: white;
-    border-radius : 5px;
-    box-shadow : none;
-    border : 1px solid pink;
+
+    mat-card-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 1em;
+    }
 }
 
-.card-item {
-    margin: 10px;
-    padding: 10px;
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    background-color: #fafafa;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 10px 15px;
+    transition: box-shadow 0.2s ease;
+}
+
+.task-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-icon {
+    margin-right: 10px;
+    color: #9c27b0;
+}
+
+.task-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-title {
+    font-size: 1rem;
+    margin-bottom: 4px;
+    color: #333;
+
+    .separator {
+        color: #999;
+    }
+}
+
+.task-date {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+button[mat-icon-button] {
+    margin-left: auto;
 }

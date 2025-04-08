@@ -28,4 +28,9 @@ export class CardService {
             this.cards = JSON.parse(data);
         }
     }
+
+    removeCard(id: number) {
+        this.cards = this.cards.filter(c => c.id !== id);
+        this.saveToLocalStorage();
+    }
 }

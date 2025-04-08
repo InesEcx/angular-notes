@@ -3,7 +3,7 @@ import {MatCard, MatCardContent, MatCardFooter, MatCardTitle} from "@angular/mat
 import {Card} from "../../@core/card.model";
 import {CardService} from "../../@core/card.service";
 import {MatDialog} from "@angular/material/dialog";
-import {MatFabButton} from "@angular/material/button";
+import {MatFabButton, MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {CommonModule, NgForOf} from "@angular/common";
 import {AddCardDialogComponent} from '../add-card-dialog/add-card-dialog';
@@ -18,7 +18,8 @@ import {AddCardDialogComponent} from '../add-card-dialog/add-card-dialog';
         MatCardContent,
         MatCardFooter,
         NgForOf,
-        CommonModule
+        CommonModule,
+        MatIconButton
     ],
     templateUrl: './notes-page.component.html',
     standalone: true,
@@ -52,5 +53,10 @@ export class NotesPageComponent {
                 this.cards = this.cardService.getCards();
             }
         });
+    }
+
+    deleteCard(card: Card) {
+        this.cardService.removeCard(card.id);
+        this.cards = this.cardService.getCards();
     }
 }
