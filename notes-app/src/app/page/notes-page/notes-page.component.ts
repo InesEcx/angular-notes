@@ -6,7 +6,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {MatFabButton, MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {CommonModule, NgForOf} from "@angular/common";
-import {AddCardDialogComponent} from '../add-card-dialog/add-card-dialog';
+import {AddCardDialogComponent} from './add-card-dialog/add-card-dialog.component';
 
 @Component({
     selector: 'app-notes-page',
@@ -23,7 +23,7 @@ import {AddCardDialogComponent} from '../add-card-dialog/add-card-dialog';
     ],
     templateUrl: './notes-page.component.html',
     standalone: true,
-    styleUrl: './notes-page.component.scss'
+    styleUrls: ['./notes-page.component.scss']
 })
 export class NotesPageComponent {
     cards: Card[] = [];
@@ -36,10 +36,7 @@ export class NotesPageComponent {
     }
 
     openAddCardDialog() {
-        const dialogRef = this.dialog.open(AddCardDialogComponent, {
-            width: '400px',
-            data: {title: '', description: ''}
-        });
+        const dialogRef = this.dialog.open(AddCardDialogComponent);
 
         dialogRef.afterClosed().subscribe(result => {
             if (result) {

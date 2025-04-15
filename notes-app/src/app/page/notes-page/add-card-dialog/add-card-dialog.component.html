@@ -1,0 +1,21 @@
+<div class="dialog-container">
+    <h2 class="dialog-title">Nouvelle carte</h2>
+    <p class="dialog-subtitle">Donnez un titre et une description à votre nouvelle carte.</p>
+    <form class="form-fields">
+        <mat-form-field appearance="outline">
+            <mat-label>Titre</mat-label><br>
+            <input matInput [(ngModel)]="data.title" name="title" placeholder="Ex : Tâche importante"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label><br>
+            <textarea matInput rows="3"
+                      [(ngModel)]="data.description"
+                      name="description"
+                      placeholder="Décrivez la tâche à accomplir"></textarea>
+        </mat-form-field>
+    </form>
+    <div class="dialog-actions">
+        <button mat-button mat-dialog-close>Annuler</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="data">Enregistrer</button>
+    </div>
+</div>

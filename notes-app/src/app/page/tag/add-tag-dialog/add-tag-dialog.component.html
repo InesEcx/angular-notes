@@ -1,0 +1,24 @@
+<div class="dialog-container">
+    <h2 class="dialog-title">Nouveau tag</h2>
+    <p class="dialog-subtitle">Donnez un nom et une couleur à votre nouveau tag.</p>
+    <form class="form-fields">
+        <mat-form-field appearance="outline">
+            <mat-label>Nom du tag</mat-label>
+            <input matInput [(ngModel)]="data.name" name="name" placeholder="Ex : Important">
+        </mat-form-field>
+
+        <div class="color-picker">
+            <label for="colorInput">Couleur</label>
+            <input
+                    type="color"
+                    id="colorInput"
+                    [(ngModel)]="data.color"
+                    name="color"
+                    [value]="data.color || '#000000'">
+        </div>
+    </form>
+    <div class="dialog-actions">
+        <button mat-button mat-dialog-close>Annuler</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="data">Enregistrer</button>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<mat-card class="section-card">
+    <mat-card-title>Gestion des Tags</mat-card-title>
+    <mat-card-content>
+        <div class="tag-grid">
+            <div class="tag-item" *ngFor="let tag of tags">
+                <div class="tag-box" [style.background-color]="tag.color">
+                    <span>{{ tag.name }}</span>
+                    <button mat-icon-button color="warn" (click)="deleteTag(tag)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+
+    <button class="add-button" (click)="openAddTagDialog()">
+        AJOUTER
+    </button>
+</mat-card>

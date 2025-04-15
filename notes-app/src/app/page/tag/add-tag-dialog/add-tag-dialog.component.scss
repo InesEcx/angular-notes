@@ -1,0 +1,35 @@
+.dialog-container {
+    background-color: white;
+    padding: 1em;
+}
+
+.dialog-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.dialog-subtitle {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+mat-label {
+    color: gray;
+}
+
+:host ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #fff !important; /* Ou la couleur que vous souhaitez */
+  color: #000; /* Facultatif, si le texte devient illisible sur fond clair */
+}

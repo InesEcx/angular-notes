@@ -33,7 +33,7 @@
 
 .task-icon {
     margin-right: 10px;
-    color: #9c27b0;
+    color: #cb5382;
 }
 
 .task-center {
@@ -59,4 +59,14 @@
 
 button[mat-icon-button] {
     margin-left: auto;
+}
+
+.add-button {
+    padding: .5em;
+    margin: 1em;
+    border: none;
+    border-radius: 10px;
+    background-color: #cb5382;
+    color: white;
+    font-weight: 600;
 }
