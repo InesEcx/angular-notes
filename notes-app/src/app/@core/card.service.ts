@@ -28,7 +28,6 @@ export class CardService {
 
     private loadFromLocalStorage(): Card[] {
         if (!isPlatformBrowser(this.platformId)) {
-            // Si le code n'est pas exécuté dans le navigateur, on retourne un tableau vide ou une valeur par défaut
             return [];
         }
         const cardsJson = localStorage.getItem('cards');

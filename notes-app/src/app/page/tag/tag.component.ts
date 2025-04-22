@@ -32,7 +32,6 @@ export class TagComponent {
     }
 
     ngOnInit(): void {
-        // On s'abonne au BehaviorSubject du TagService
         this.tagService.getTags().subscribe((tags: Tag[]) => {
             this.tags = tags;
         });
@@ -50,5 +49,34 @@ export class TagComponent {
 
     deleteTag(tag: Tag): void {
         this.tagService.deleteTag(tag.id).subscribe();
+    }
+
+    getTextColor(hex: string): string {
+        if (!hex) {
+            return '#000';
+        }
+        if (hex.startsWith('#')) {
+            hex = hex.slice(1);
+        }
+        if (hex.length === 3) {
+            hex = hex.split('').map(c => c + c).join('');
+        }
+
+        const r = parseInt(hex.substr(0, 2), 16);
+        const g = parseInt(hex.substr(2, 2), 16);
+        const b = parseInt(hex.substr(4, 2), 16);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        return brightness > 186 ? '#000000' : '#FFFFFF';
+    }
+
+    openEditTagDialog(tag: Tag): void {
+        const dialogRef = this.dialog.open(AddTagDialogComponent);
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                const updatedTag: Tag = {...tag, name: result.name, color: result.color};
+                this.tagService.updateTag(updatedTag).subscribe();
+            }
+        });
     }
 }

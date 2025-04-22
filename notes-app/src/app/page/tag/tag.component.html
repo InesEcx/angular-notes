@@ -3,8 +3,8 @@
     <mat-card-content>
         <div class="tag-grid">
             <div class="tag-item" *ngFor="let tag of tags">
-                <div class="tag-box" [style.background-color]="tag.color">
-                    <span>{{ tag.name }}</span>
+                <div class="tag-box" [style.background-color]="tag.color" (dblclick)="openEditTagDialog(tag)">
+                    <span [style.color]="getTextColor(tag.color)">{{ tag.name }}</span>
                     <button mat-icon-button color="warn" (click)="deleteTag(tag)">
                         <mat-icon>delete</mat-icon>
                     </button>

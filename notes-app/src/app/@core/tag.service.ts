@@ -1,6 +1,7 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {Tag} from "./tag.model";
+import {isPlatformBrowser} from "@angular/common";
 
 @Injectable({
     providedIn: 'root'
@@ -9,58 +10,58 @@ export class TagService {
     private tags: Tag[] = [];
     private tagsSubject = new BehaviorSubject<Tag[]>(this.tags);
 
-    constructor() {
+    constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+        this.tags = this.loadFromLocalStorage();
+        this.tagsSubject.next(this.tags);
     }
 
-    /**
-     * Retourne un Observable de la liste des tags
-     */
     getTags(): Observable<Tag[]> {
         return this.tagsSubject.asObservable();
     }
 
-    /**
-     * Crée un nouveau tag avec un nom et une couleur
-     * @param name Nom du tag
-     * @param color Couleur du tag
-     */
     createTag(name: string, color: string): Observable<Tag> {
         const newTag: Tag = {id: this.generateId(), name, color};
         this.tags.push(newTag);
         this.tagsSubject.next(this.tags);
+        this.saveToLocalStorage();
         return of(newTag);
     }
 
-    /**
-     * Met à jour un tag existant
-     * @param tag Le tag modifié
-     */
     updateTag(tag: Tag): Observable<Tag> {
-        const index: number = this.tags.findIndex(t => t.id === tag.id);
+        const index = this.tags.findIndex(t => t.id === tag.id);
         if (index !== -1) {
             this.tags[index] = tag;
             this.tagsSubject.next(this.tags);
+            this.saveToLocalStorage();
         }
         return of(tag);
     }
 
-    /**
-     * Supprime un tag en se basant sur son identifiant
-     * @param tagId L'identifiant du tag à supprimer
-     */
     deleteTag(tagId: string): Observable<boolean> {
-        const index: number = this.tags.findIndex(t => t.id === tagId);
+        const index = this.tags.findIndex(t => t.id === tagId);
         if (index !== -1) {
             this.tags.splice(index, 1);
             this.tagsSubject.next(this.tags);
+            this.saveToLocalStorage();
             return of(true);
         }
         return of(false);
     }
 
-    /**
-     * Méthode utilitaire pour générer un identifiant unique
-     */
+    private saveToLocalStorage() {
+        if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('tags', JSON.stringify(this.tags));
+        }
+    }
+
+    private loadFromLocalStorage(): Tag[] {
+        if (!isPlatformBrowser(this.platformId)) {
+            return [];
+        }
+        const tagsJson = localStorage.getItem('tags');
+        return tagsJson ? JSON.parse(tagsJson) : [];
+    }
+
     private generateId(): string {
         return Math.random().toString(36).substr(2, 9);
     }
